@@ -21,6 +21,9 @@
 (defvar ~
   (expand-file-name "~/"))
 
+(add-to-list 'load-path
+              "~/.emacs.d/site-packages/")
+
 ;; Allow hash to be entered
 (global-set-key (kbd "M-3") (lambda () (interactive) (insert "#")))
 
@@ -71,6 +74,7 @@ For anything. Seriously."
 (dotfile .emacs)
 (dotfile .zshrc)
 (dotfile .screenrc)
+(dotfile .gitconfig)
 
 ;;
 ;; 4. Additions and configuration of text editing
@@ -105,7 +109,17 @@ For anything. Seriously."
 (setq-default dired-omit-files-p t) ;; This is the buffer-local variable
 (setq dired-omit-files
       ;; kill magic . .. as well as .pyc and emacs *~ files
-    (concat dired-omit-files "\\|^\\..+$\\|\\.pyc$\\|\\*~$"))
+      (concat dired-omit-files "\\|^\\..+$\\|\\.pyc$\\|\\*~$"))
+
+
+(add-to-list 'load-path
+              "~/.emacs.d/site-packages/yasnippet")
+(require 'yasnippet)
+(yas-global-mode 1)
+
+
+(require 'opal-mode)
+
 
 
 ;;
@@ -133,3 +147,17 @@ For anything. Seriously."
        ([M-up] 'windmove-up)       ;; Move to upper window
        ([M-down] 'windmove-down)   ;; Move to downer window
        ))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("0d5285aadfe9f771b865379fed216239b5fb145972c23e9a29fcff6f9a005a38" default)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(put 'downcase-region 'disabled nil)
